@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
-import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { ContactForm } from "@/components/ContactForm";
+import { BookingCTA } from "@/components/BookingCTA";
 
 export const metadata: Metadata = {
   title: "Kontakt",
@@ -35,7 +35,7 @@ export default function KontaktPage() {
       />
 
       {/* Form + info side-by-side */}
-      <Section background="white">
+      <Section background="cream" dividerTop>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-14">
           {/* Contact form — wider column */}
           <div className="lg:col-span-3">
@@ -119,7 +119,7 @@ export default function KontaktPage() {
       </Section>
 
       {/* Map */}
-      <Section background="light">
+      <Section background="light" dividerTop>
         <h2 className="font-heading text-2xl font-semibold text-secondary-900 mb-8 text-center">
           Pronađite nas na mapi
         </h2>
@@ -138,27 +138,7 @@ export default function KontaktPage() {
         </div>
       </Section>
 
-      {/* Full-width CTA */}
-      <section className="bg-secondary-900 text-white">
-        <Container>
-          <div className="py-20 md:py-24 text-center max-w-2xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold leading-snug">
-              Kako zakazati termin?
-            </h2>
-            <p className="mt-5 text-secondary-300 leading-relaxed text-lg">
-              Termin možete zakazati telefonskim pozivom, slanjem emaila ili
-              popunjavanjem kontakt forme. Javićemo vam se u najkraćem roku.
-            </p>
-            {/* TODO: Replace with actual phone number */}
-            <a
-              href="tel:+38267322996"
-              className="inline-flex items-center gap-2 mt-8 text-primary-400 hover:text-primary-300 transition-colors font-semibold text-lg"
-            >
-              📞 +382 67 322 996
-            </a>
-          </div>
-        </Container>
-      </section>
+      <BookingCTA />
     </>
   );
 }

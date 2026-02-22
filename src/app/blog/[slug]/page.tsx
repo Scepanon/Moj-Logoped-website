@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { BookingCTA } from "@/components/BookingCTA";
 import { blogPosts } from "@/data/blogPosts";
 
 interface BlogPostPageProps {
@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </div>
 
       {/* Content */}
-      <Section background="white">
+      <Section background="white" dividerTop>
         <article className="max-w-3xl mx-auto">
           <div
             className="prose prose-lg max-w-none
@@ -99,23 +99,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </article>
       </Section>
 
-      {/* CTA */}
-      <Section background="cream">
-        <div className="text-center max-w-xl mx-auto">
-          <h2 className="font-heading text-2xl font-semibold text-secondary-900">
-            Imate pitanja o govorno-jezičkom razvoju?
-          </h2>
-          <p className="mt-3 text-secondary-500">
-            Kontaktirajte nas i rado ćemo vam pomoći.
-          </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-            <Button href="/kontakt">Zakažite konsultaciju</Button>
-            <Button href="/blog" variant="outline">
-              Svi članci
-            </Button>
+      <div className="py-8 md:py-10 bg-bg-cream">
+        <Container>
+          <div className="text-center">
+            <Link
+              href="/blog"
+              className="text-primary-600 hover:text-primary-700 font-medium transition-colors"
+            >
+              ← Nazad na sve članke
+            </Link>
           </div>
-        </div>
-      </Section>
+        </Container>
+      </div>
+
+      <BookingCTA />
     </>
   );
 }

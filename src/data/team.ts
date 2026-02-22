@@ -3,17 +3,18 @@ export interface TeamMember {
   name: string;
   title: string;
   bio: string;
-  // TODO: Replace with actual photo paths
+  /** Optional first-person sentence about approach */
+  approachQuote?: string;
   photo: string;
 }
 
-// TODO: Replace with real team member data
 export const team: TeamMember[] = [
   {
     id: "dusica",
-    name: "Dušica Šćepanovic",
+    name: "Dušica Šćepanović",
     title: "Master dipl.logoped i dipl.pedagog, osnivačica centra",
-    bio: "Sa višegodišnjim iskustvom u radu sa djecom, Dušica je osnovala centar sa vizijom da svakom djetetu pruži podršku u razvoju komunikacije.",
+    bio: "Sa višegodišnjim iskustvom u radu sa djecom, Dušica je osnovala centar sa vizijom da svakom djetetu pruži podršku u razvoju komunikacije. Specijalizirala se za individualni rad i ranu intervenciju, uvijek u saradnji sa roditeljima.",
+    approachQuote: "Vjerujem da svako dijete zaslužuje priliku da komunicira sa samopouzdanjem.",
     photo: "/images/team/Dusica.jpg",
   },
   {

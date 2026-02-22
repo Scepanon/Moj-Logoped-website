@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
-import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { TeamMemberCard } from "@/components/TeamMemberCard";
+import { BookingCTA } from "@/components/BookingCTA";
 import { team } from "@/data/team";
 
 export const metadata: Metadata = {
@@ -47,7 +46,7 @@ export default function ONamaPage() {
       />
 
       {/* About narrative */}
-      <Section background="white" narrow>
+      <Section background="white" narrow dividerTop>
         {/* TODO: Replace placeholder copy with real narrative */}
         <h2 className="font-heading text-2xl md:text-3xl font-semibold text-secondary-900 mb-6">
           Mali centar, velika posvećenost
@@ -74,7 +73,7 @@ export default function ONamaPage() {
       </Section>
 
       {/* Team section */}
-      <Section background="cream">
+      <Section background="cream" dividerTop>
         <div className="text-center mb-14">
           <h2 className="font-heading text-3xl md:text-4xl font-semibold text-secondary-900">
             Naš tim
@@ -91,7 +90,7 @@ export default function ONamaPage() {
       </Section>
 
       {/* Approach */}
-      <Section background="white">
+      <Section background="white" dividerTop>
         <h2 className="font-heading text-2xl md:text-3xl font-semibold text-secondary-900 mb-10 text-center">
           Naš pristup radu
         </h2>
@@ -130,7 +129,7 @@ export default function ONamaPage() {
       </Section>
 
       {/* FAQ */}
-      <Section background="light" narrow>
+      <Section background="light" narrow dividerTop>
         <h2 className="font-heading text-2xl md:text-3xl font-semibold text-secondary-900 mb-10 text-center">
           Često postavljana pitanja
         </h2>
@@ -148,23 +147,7 @@ export default function ONamaPage() {
         </div>
       </Section>
 
-      {/* Full-width CTA */}
-      <section className="bg-secondary-900 text-white">
-        <Container>
-          <div className="py-20 md:py-24 text-center max-w-2xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold leading-snug">
-              Spremni ste da zakažete termin?
-            </h2>
-            <p className="mt-5 text-secondary-300 leading-relaxed text-lg">
-              Rado ćemo odgovoriti na sva vaša pitanja i pomoći vam da
-              napravite prvi korak.
-            </p>
-            <Button href="/kontakt" size="lg" className="mt-8">
-              Kontaktirajte nas
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <BookingCTA />
     </>
   );
 }

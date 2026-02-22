@@ -64,7 +64,7 @@ export function TestimonialsCarousel({
 
   return (
     <section
-      className="py-20 md:py-28 lg:py-32 bg-bg-cream"
+      className="relative py-20 md:py-28 lg:py-32 section-divider-soft bg-bg-cream"
       aria-label="Recenzije roditelja"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}

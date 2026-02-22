@@ -143,25 +143,27 @@ export function HeroCarousel({ slides, interval = 7000 }: HeroCarouselProps) {
                 {slide.subheading}
               </motion.p>
 
-              {/* CTAs — stacked full-width on mobile */}
-              <motion.div variants={variants} className="mt-5 sm:mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+              {/* CTAs — helper directly below primary button */}
+              <motion.div variants={variants} className="mt-5 sm:mt-6 md:mt-8 flex flex-col gap-4">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-col gap-2">
+                    <Link
+                      href={slide.ctaPrimary.href}
+                      className="inline-flex items-center justify-center px-6 py-3.5 sm:py-3 bg-primary-500 text-white font-heading font-semibold rounded-xl hover:bg-primary-600 active:bg-primary-700 transition-colors shadow-lg text-base w-full sm:w-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black/30"
+                    >
+                      {slide.ctaPrimary.label}
+                    </Link>
+                    <span className="text-sm text-white/70 text-center sm:text-left">
+                      {slide.ctaHelper}
+                    </span>
+                  </div>
                   <Link
-                    href={slide.ctaPrimary.href}
-                    className="inline-flex items-center justify-center px-6 py-3.5 sm:py-3 bg-primary-500 text-white font-heading font-semibold rounded-xl hover:bg-primary-600 active:bg-primary-700 transition-colors shadow-lg text-base w-full sm:w-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black/30"
+                    href={slide.ctaSecondary.href}
+                    className="inline-flex items-center justify-center px-6 py-3.5 sm:py-3 border-2 border-white/40 text-white font-heading font-medium rounded-xl hover:bg-white/10 active:bg-white/20 transition-colors text-base backdrop-blur-sm w-full sm:w-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black/30"
                   >
-                    {slide.ctaPrimary.label}
+                    {slide.ctaSecondary.label}
                   </Link>
-                  <span className="text-white/70 text-sm text-center sm:text-left">
-                    {slide.ctaHelper}
-                  </span>
                 </div>
-                <Link
-                  href={slide.ctaSecondary.href}
-                  className="inline-flex items-center justify-center px-6 py-3.5 sm:py-3 border-2 border-white/40 text-white font-heading font-medium rounded-xl hover:bg-white/10 active:bg-white/20 transition-colors text-base backdrop-blur-sm w-full sm:w-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black/30"
-                >
-                  {slide.ctaSecondary.label}
-                </Link>
               </motion.div>
             </motion.div>
           </AnimatePresence>

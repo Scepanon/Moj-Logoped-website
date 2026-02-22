@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
-import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
+import { BookingCTA } from "@/components/BookingCTA";
 import { resources } from "@/data/resources";
 
 export const metadata: Metadata = {
@@ -24,7 +23,7 @@ export default function MaterijaliPage() {
       />
 
       {/* Intro */}
-      <Section background="white" narrow>
+      <Section background="cream" narrow dividerTop>
         <p className="text-lg text-secondary-500 leading-relaxed text-center">
           Pripremili smo zbirku besplatnih materijala koji vam mogu pomoći u
           svakodnevnom podsticanju govorno-jezičkog razvoja vašeg djeteta.
@@ -33,7 +32,7 @@ export default function MaterijaliPage() {
       </Section>
 
       {/* Resources by category */}
-      <Section background="light">
+      <Section background="light" dividerTop>
         {categories.map((category, catIdx) => (
           <div key={category} className={catIdx > 0 ? "mt-16" : ""}>
             <h2 className="font-heading text-xl font-semibold text-secondary-900 mb-7 flex items-center gap-3">
@@ -73,23 +72,7 @@ export default function MaterijaliPage() {
         ))}
       </Section>
 
-      {/* Full-width CTA */}
-      <section className="bg-secondary-900 text-white">
-        <Container>
-          <div className="py-20 md:py-24 text-center max-w-2xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold leading-snug">
-              Spremni ste da zakažete termin?
-            </h2>
-            <p className="mt-5 text-secondary-300 leading-relaxed text-lg">
-              Kontaktirajte nas i rado ćemo razgovarati o tome kako možemo
-              podržati vaše dijete.
-            </p>
-            <Button href="/kontakt" className="mt-8" size="lg">
-              Zakažite termin
-            </Button>
-          </div>
-        </Container>
-      </section>
+      <BookingCTA />
     </>
   );
 }
