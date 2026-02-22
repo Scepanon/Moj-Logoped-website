@@ -13,16 +13,16 @@ export const metadata: Metadata = {
 
 // TODO: Replace with real contact details and map embed URL
 const contactDetails = {
-  address: "Ulica Slobode 12, 81000 Podgorica, Crna Gora",
-  phone: "+382 67 123 456",
+  address: "Aerodromska, 81000 Podgorica, Crna Gora",
+  phone: "+382 67 322 996",
   email: "info@mojlogoped.me",
   workingHours: [
     { days: "Ponedeljak – Petak", hours: "08:00 – 20:00" },
-    { days: "Subota", hours: "09:00 – 14:00" },
+    { days: "Subota", hours: "Zatvoreno" },
     { days: "Nedjelja", hours: "Zatvoreno" },
   ],
   mapEmbedUrl:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47456.89!2d19.25!3d42.44!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDI2JzI0LjAiTiAxOcKwMTUnMDAuMCJF!5e0!3m2!1ssr!2sme!4v1",
+    "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1472.4071820223699!2d19.2806912!3d42.4316861!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x134deb2c5d1e3b19%3A0x9ac91240461d19e3!2sMoj%20Logoped!5e0!3m2!1sen!2sfr!4v1771780509409!5m2!1sen!2sfr",
 };
 
 export default function KontaktPage() {
@@ -110,7 +110,7 @@ export default function KontaktPage() {
               </h3>
               <p className="text-sm text-secondary-500 leading-relaxed">
                 {/* TODO: Replace with real directions */}
-                Nalazimo se u centru Podgorice, u blizini Ulice Slobode.
+                Nalazimo se u Podgorici, na starom aerodromu, preko puta doma zdravlja.
                 Parking je dostupan u neposrednoj blizini.
               </p>
             </Card>
@@ -151,10 +151,10 @@ export default function KontaktPage() {
             </p>
             {/* TODO: Replace with actual phone number */}
             <a
-              href="tel:+38267123456"
+              href="tel:+38267322996"
               className="inline-flex items-center gap-2 mt-8 text-primary-400 hover:text-primary-300 transition-colors font-semibold text-lg"
             >
-              📞 +382 67 123 456
+              📞 +382 67 322 996
             </a>
           </div>
         </Container>

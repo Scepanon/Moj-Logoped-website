@@ -4,8 +4,8 @@ import { Container } from "@/components/ui/Container";
 
 // TODO: Replace placeholder contact details with real ones
 const contactInfo = {
-  address: "Ulica Slobode 12, 81000 Podgorica",
-  phone: "+382 67 123 456",
+  address: "Aerodromska, 81000 Podgorica",
+  phone: "+382 67 322 996",
   email: "info@mojlogoped.me",
   workingHours: "Pon – Pet: 08:00 – 20:00",
 };

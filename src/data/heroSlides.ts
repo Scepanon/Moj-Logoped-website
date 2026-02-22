@@ -5,7 +5,6 @@ export interface HeroSlide {
   description: string;
   ctaPrimary: { label: string; href: string };
   ctaSecondary: { label: string; href: string };
-  // TODO: Replace placeholder paths with real photos from the photoshoot
   image: string;
   alt: string;
 }
@@ -19,9 +18,8 @@ export const heroSlides: HeroSlide[] = [
       "Moj Logoped je mali logopedski centar u Podgorici gdje djeca uz stručnu i toplu podršku razvijaju svoje komunikacione vještine.",
     ctaPrimary: { label: "Zakažite termin", href: "/kontakt" },
     ctaSecondary: { label: "Naše usluge", href: "/usluge" },
-    // TODO: Replace with real hero photo (e.g. warm shot of the center's playroom)
-    image: "/images/hero-1.jpg",
-    alt: "Dijete se igra u toplom okruženju logopedskog centra",
+    image: "/images/homepage/slika1.jpg",
+    alt: "Dijete u logopedskoj terapiji",
   },
   {
     id: "individualni-pristup",
@@ -31,8 +29,7 @@ export const heroSlides: HeroSlide[] = [
       "Svaki plan terapije kreiramo na osnovu potreba vašeg djeteta. Kod nas nema šablona — samo pažljiv rad, prilagođen upravo vama.",
     ctaPrimary: { label: "Zakažite termin", href: "/kontakt" },
     ctaSecondary: { label: "O nama", href: "/o-nama" },
-    // TODO: Replace with real hero photo (e.g. logoped working one-on-one with a child)
-    image: "/images/hero-2.jpg",
+    image: "/images/homepage/slika2.jpg",
     alt: "Logopedinja radi individualno sa djetetom",
   },
   {
@@ -43,8 +40,7 @@ export const heroSlides: HeroSlide[] = [
       "Vjerujemo da su roditelji ključni partneri u terapijskom procesu. Pružamo vam znanje, smjernice i podršku na svakom koraku.",
     ctaPrimary: { label: "Zakažite termin", href: "/kontakt" },
     ctaSecondary: { label: "Materijali", href: "/materijali" },
-    // TODO: Replace with real hero photo (e.g. parent consultation session)
-    image: "/images/hero-3.jpg",
-    alt: "Savjetovanje roditelja u logopedskom centru",
+    image: "/images/homepage/slika3.jpg",
+    alt: "Roditelj i dijete u logopedskom centru",
   },
 ];

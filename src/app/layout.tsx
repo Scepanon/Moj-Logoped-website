@@ -3,6 +3,8 @@ import { Inter, Quicksand } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MainWithPadding } from "@/components/layout/MainWithPadding";
+import { BackToTopButton } from "@/components/ui/BackToTopButton";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -49,8 +51,9 @@ export default function RootLayout({
     <html lang="sr-Latn-ME" className={`${inter.variable} ${quicksand.variable}`}>
       <body className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-1">{children}</main>
+        <MainWithPadding>{children}</MainWithPadding>
         <Footer />
+        <BackToTopButton />
       </body>
     </html>
   );

@@ -80,7 +80,7 @@ export default function ONamaPage() {
             Naš tim
           </h2>
           <p className="mt-4 text-secondary-500 max-w-2xl mx-auto leading-relaxed">
-            Upoznajte logopedinje koje svakodnevno rade sa vašom djecom.
+            Upoznajte logopedkinje koje svakodnevno rade sa vašom djecom.
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
