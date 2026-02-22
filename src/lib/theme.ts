@@ -1,0 +1,50 @@
+export const theme = {
+  colors: {
+    primary: {
+      50: "#FFF8E7",
+      100: "#FFEFC2",
+      200: "#FFE099",
+      300: "#FFD06B",
+      400: "#F5B731",
+      500: "#E5A216",
+      600: "#C4880E",
+      700: "#9A6A0B",
+      800: "#6F4D0A",
+      900: "#4A3308",
+    },
+    secondary: {
+      50: "#F5F5F5",
+      100: "#E8E8E8",
+      200: "#D1D1D1",
+      300: "#A3A3A3",
+      400: "#737373",
+      500: "#525252",
+      600: "#3D3D3D",
+      700: "#2E2E2E",
+      800: "#1F1F1F",
+      900: "#141414",
+    },
+    accent: {
+      teal: "#5BA4A4",
+      tealLight: "#E8F4F4",
+      tealDark: "#3D7A7A",
+    },
+    bg: {
+      white: "#FFFFFF",
+      cream: "#FFFCF5",
+      beige: "#FDF6E9",
+      light: "#F9FAFB",
+    },
+  },
+  shadows: {
+    sm: "0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04)",
+    md: "0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04)",
+    lg: "0 10px 30px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04)",
+  },
+  borderRadius: {
+    sm: "0.5rem",
+    md: "0.75rem",
+    lg: "1rem",
+    xl: "1.5rem",
+  },
+} as const;
