@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import type { HeroSlide } from "@/data/heroSlides";
 
 interface HeroCarouselProps {
@@ -18,29 +18,30 @@ const FALLBACK_GRADIENTS = [
 ];
 
 const stagger = {
-  center: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+  center: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
   exit: { transition: { staggerChildren: 0.05, staggerDirection: -1 } },
 };
 
-const childVariants = {
-  enter: { opacity: 0, y: 24 },
+const childVariants = (reduced: boolean) => ({
+  enter: { opacity: reduced ? 1 : 0, y: reduced ? 0 : 20 },
   center: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    transition: { duration: reduced ? 0 : 0.3, ease: [0.25, 0.46, 0.45, 0.94] as const },
   },
   exit: {
-    opacity: 0,
-    y: -16,
-    transition: { duration: 0.3, ease: "easeIn" as const },
+    opacity: reduced ? 0 : 0,
+    y: reduced ? 0 : -12,
+    transition: { duration: reduced ? 0 : 0.2, ease: "easeIn" as const },
   },
-};
+});
 
 export function HeroCarousel({ slides, interval = 7000 }: HeroCarouselProps) {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
   const [imgErrors, setImgErrors] = useState<Set<number>>(() => new Set());
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const reducedMotion = useReducedMotion();
 
   const count = slides.length;
 
@@ -52,11 +53,13 @@ export function HeroCarousel({ slides, interval = 7000 }: HeroCarouselProps) {
   const prev = useCallback(() => goTo(current - 1), [current, goTo]);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     if (paused || count <= 1) return;
-    timerRef.current = setInterval(next, interval);
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
+    const id = setInterval(next, interval);
+    return () => clearInterval(id);
   }, [paused, next, interval, count]);
 
   const handleImgError = (idx: number) => {
@@ -64,6 +67,7 @@ export function HeroCarousel({ slides, interval = 7000 }: HeroCarouselProps) {
   };
 
   const slide = slides[current];
+  const variants = childVariants(!!reducedMotion);
 
   return (
     <section
@@ -116,44 +120,45 @@ export function HeroCarousel({ slides, interval = 7000 }: HeroCarouselProps) {
               key={slide.id}
               variants={stagger}
               initial="enter"
-              animate="center"
+              animate={mounted ? "center" : "enter"}
               exit="exit"
               className="max-w-[700px]"
               role="group"
               aria-roledescription="slide"
               aria-label={`${current + 1} od ${count}`}
             >
-              {/* Heading */}
+              {/* Heading — one strong line */}
               <motion.h1
-                variants={childVariants}
-                className="font-heading text-[1.75rem] sm:text-4xl md:text-5xl lg:text-[3.75rem] font-bold text-white leading-[1.1] tracking-tight"
+                variants={variants}
+                className="font-heading text-[1.5rem] sm:text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-white leading-[1.15] tracking-tight"
               >
-                {slide.title}{" "}
-                <span className="text-primary-400">{slide.highlight}</span>
+                {slide.title}
               </motion.h1>
 
-              {/* Description */}
+              {/* Subheading — benefits */}
               <motion.p
-                variants={childVariants}
-                className="mt-4 sm:mt-5 md:mt-6 text-[0.95rem] sm:text-lg md:text-xl text-white/80 leading-relaxed max-w-[600px]"
+                variants={variants}
+                className="mt-3 sm:mt-4 md:mt-5 text-[0.9rem] sm:text-base md:text-lg text-white/85 leading-relaxed max-w-[600px]"
               >
-                {slide.description}
+                {slide.subheading}
               </motion.p>
 
-              {/* CTAs */}
-              <motion.div
-                variants={childVariants}
-                className="mt-6 sm:mt-7 md:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4"
-              >
-                <Link
-                  href={slide.ctaPrimary.href}
-                  className="inline-flex items-center justify-center px-7 py-3.5 bg-primary-500 text-white font-heading font-semibold rounded-xl hover:bg-primary-600 active:bg-primary-700 transition-colors shadow-lg text-base md:text-lg w-full sm:w-auto"
-                >
-                  {slide.ctaPrimary.label}
-                </Link>
+              {/* CTAs — stacked full-width on mobile */}
+              <motion.div variants={variants} className="mt-5 sm:mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                  <Link
+                    href={slide.ctaPrimary.href}
+                    className="inline-flex items-center justify-center px-6 py-3.5 sm:py-3 bg-primary-500 text-white font-heading font-semibold rounded-xl hover:bg-primary-600 active:bg-primary-700 transition-colors shadow-lg text-base w-full sm:w-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black/30"
+                  >
+                    {slide.ctaPrimary.label}
+                  </Link>
+                  <span className="text-white/70 text-sm text-center sm:text-left">
+                    {slide.ctaHelper}
+                  </span>
+                </div>
                 <Link
                   href={slide.ctaSecondary.href}
-                  className="inline-flex items-center justify-center px-7 py-3.5 border-2 border-white/40 text-white font-heading font-medium rounded-xl hover:bg-white/10 active:bg-white/20 transition-colors text-base md:text-lg backdrop-blur-sm w-full sm:w-auto"
+                  className="inline-flex items-center justify-center px-6 py-3.5 sm:py-3 border-2 border-white/40 text-white font-heading font-medium rounded-xl hover:bg-white/10 active:bg-white/20 transition-colors text-base backdrop-blur-sm w-full sm:w-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-black/30"
                 >
                   {slide.ctaSecondary.label}
                 </Link>
@@ -169,7 +174,7 @@ export function HeroCarousel({ slides, interval = 7000 }: HeroCarouselProps) {
           <button
             type="button"
             onClick={prev}
-            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 hidden sm:flex items-center justify-center w-11 h-11 rounded-full bg-black/20 backdrop-blur-sm text-white/70 hover:bg-black/40 hover:text-white transition-all"
+            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 hidden sm:flex items-center justify-center w-11 h-11 rounded-full bg-black/20 backdrop-blur-sm text-white/70 hover:bg-black/40 hover:text-white transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
             aria-label="Prethodni slajd"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -179,7 +184,7 @@ export function HeroCarousel({ slides, interval = 7000 }: HeroCarouselProps) {
           <button
             type="button"
             onClick={next}
-            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 hidden sm:flex items-center justify-center w-11 h-11 rounded-full bg-black/20 backdrop-blur-sm text-white/70 hover:bg-black/40 hover:text-white transition-all"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 hidden sm:flex items-center justify-center w-11 h-11 rounded-full bg-black/20 backdrop-blur-sm text-white/70 hover:bg-black/40 hover:text-white transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
             aria-label="Sljedeći slajd"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>

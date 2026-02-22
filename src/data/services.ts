@@ -1,13 +1,21 @@
+export type ServiceIcon =
+  | "message-circle"
+  | "clipboard-list"
+  | "users"
+  | "baby"
+  | "book-open"
+  | "mic";
+
 export interface Service {
   id: string;
   title: string;
   shortDescription: string;
   fullDescription: string;
-  icon: string;
+  icon: ServiceIcon;
+  outcomes: string[];
   expectations: string[];
 }
 
-// TODO: Replace placeholder text with real service descriptions from mojlogoped.me
 export const services: Service[] = [
   {
     id: "logopedska-terapija",
@@ -16,7 +24,12 @@ export const services: Service[] = [
       "Individualni rad sa djetetom usmjeren na prevazilaženje govornih i jezičkih teškoća kroz igru i prilagođene aktivnosti.",
     fullDescription:
       "Logopedska terapija podrazumijeva individualan rad sa djetetom u toplom i podsticajnom okruženju. Svaki tretman prilagođavamo potrebama djeteta, koristeći igru, slikovnice i kreativne aktivnosti kako bismo podstakli razvoj govora i jezika.",
-    icon: "💬",
+    icon: "message-circle",
+    outcomes: [
+      "Razvijamo razumijevanje i izražavanje",
+      "Pomažemo da dijete lakše komunicira u vrtiću i školi",
+      "Podstičemo samopouzdanje u govoru",
+    ],
     expectations: [
       "Detaljnu procjenu na početku saradnje",
       "Individualni plan terapije",
@@ -31,7 +44,12 @@ export const services: Service[] = [
       "Sveobuhvatna procjena govornog i jezičkog razvoja djeteta kao osnova za planiranje podrške.",
     fullDescription:
       "Procjena obuhvata ispitivanje artikulacije, razumijevanja govora, ekspresivnog jezika, fonološke svjesnosti i pragmatičkih vještina. Na osnovu rezultata kreiramo preporuke za dalji rad.",
-    icon: "📋",
+    icon: "clipboard-list",
+    outcomes: [
+      "Jasno razumijete razvojni nivo vašeg djeteta",
+      "Dobijate preporuke prilagođene potrebama",
+      "Planirate sljedeće korake sa stručnjacima",
+    ],
     expectations: [
       "Razgovor sa roditeljima o istoriji razvoja",
       "Standardizovane i nestandardizovane testove",
@@ -46,7 +64,12 @@ export const services: Service[] = [
       "Podrška roditeljima u razumijevanju govorno-jezičkog razvoja i načina na koji mogu pomoći svom djetetu.",
     fullDescription:
       "Savjetovanje za roditelje pruža konkretne smjernice kako da u svakodnevnom životu podstičete razvoj govora i jezika svog djeteta. Razgovaramo o očekivanjima, strategijama i načinima podrške.",
-    icon: "👨‍👩‍👧",
+    icon: "users",
+    outcomes: [
+      "Naučite kako podsticati govor u svakodnevnim situacijama",
+      "Dobijate praktične savjete za rad kod kuće",
+      "Ojačavate saradnju sa logopedom",
+    ],
     expectations: [
       "Individualnu sesiju sa logopedom",
       "Praktične savjete za svakodnevne situacije",
@@ -61,7 +84,12 @@ export const services: Service[] = [
       "Stimulacija govorno-jezičkog razvoja kod najmlađe djece, jer rana podrška čini najveću razliku.",
     fullDescription:
       "Rana intervencija je ključna za djecu kod koje se primijete kašnjenja u govorno-jezičkom razvoju. Radimo sa djecom od najranijeg uzrasta, pružajući podršku kroz igru i interakciju.",
-    icon: "🌱",
+    icon: "baby",
+    outcomes: [
+      "Rano prepoznavanje potencijalnih teškoća",
+      "Stimulacija kroz igru i prirodnu interakciju",
+      "Uključivanje roditelja od samog početka",
+    ],
     expectations: [
       "Procjenu razvojnog nivoa",
       "Program stimulacije prilagođen uzrastu",
@@ -76,7 +104,12 @@ export const services: Service[] = [
       "Podrška djeci koja se suočavaju sa teškoćama u usvajanju vještina čitanja i pisanja.",
     fullDescription:
       "Pomažemo djeci da prevaziđu teškoće u čitanju i pisanju kroz strukturirane programe koji razvijaju fonološku svjesnost, prepoznavanje slova i razumijevanje teksta.",
-    icon: "📖",
+    icon: "book-open",
+    outcomes: [
+      "Razvijamo fonološku svjesnost i prepoznavanje slova",
+      "Pomažemo da dijete lakše čita i piše",
+      "Saradujemo sa školom i roditeljima",
+    ],
     expectations: [
       "Procjenu predčitalačkih i čitalačkih vještina",
       "Individualni program podrške",
@@ -91,7 +124,12 @@ export const services: Service[] = [
       "Specijalizovana podrška za djecu i odrasle koji se suočavaju sa mucanjem.",
     fullDescription:
       "Mucanje je govorna teškoća koja zahtijeva specijalizovan pristup. Kroz terapiju radimo na tehnikama fluentnog govora, smanjenju anksioznosti i izgradnji samopouzdanja u komunikaciji.",
-    icon: "🗣️",
+    icon: "mic",
+    outcomes: [
+      "Unapređujemo fluentnost govora",
+      "Smanjujemo anksioznost u komunikaciji",
+      "Gradimo samopouzdanje u izražavanju",
+    ],
     expectations: [
       "Detaljnu analizu govornog obrasca",
       "Tehnike za unapređenje fluentnosti",

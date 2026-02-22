@@ -5,6 +5,7 @@ import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
 import { HeroCarousel } from "@/components/layout/HeroCarousel";
 import { ServiceCard } from "@/components/ServiceCard";
 import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
+import { CollaborationSteps } from "@/components/CollaborationSteps";
 import { services } from "@/data/services";
 import { heroSlides } from "@/data/heroSlides";
 import { testimonials } from "@/data/testimonials";
@@ -28,7 +29,7 @@ export default function HomePage() {
             svakog djeteta i porodice.
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6">
           {featuredServices.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}
@@ -77,6 +78,9 @@ export default function HomePage() {
         </div>
       </Section>
 
+      {/* ── Kako izgleda saradnja ── */}
+      <CollaborationSteps />
+
       {/* ── Testimonials carousel ── */}
       <TestimonialsCarousel testimonials={testimonials} />
 
@@ -84,29 +88,41 @@ export default function HomePage() {
       <section className="relative cta-wavy-top bg-gradient-to-b from-primary-50/80 via-bg-cream to-bg-beige py-20 md:py-28 lg:py-32 overflow-hidden">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left: text and buttons */}
+            {/* Left: label, heading, paragraph, buttons */}
             <div className="order-2 lg:order-1">
+              <span className="inline-block text-sm font-semibold text-primary-600 uppercase tracking-wider mb-3">
+                Spremni za sljedeći korak?
+              </span>
               <h2 className="font-heading text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-secondary-900 leading-snug">
                 Spremni ste da zakažete termin?
               </h2>
               <p className="mt-5 text-secondary-600 leading-relaxed text-lg max-w-xl">
                 Javite nam se i zajedno ćemo pronaći najbolji način da podržimo
-                vaše dijete. Tu smo za vas.
+                vaše dijete. Tu smo za vas — bez obzira gdje se nalazite na putu.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Button href="/kontakt" size="lg">
+                <Button
+                  href="/kontakt"
+                  size="lg"
+                  className="w-full sm:w-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2"
+                >
                   Zakažite termin
                 </Button>
-                <Button href="/usluge" variant="outline" size="lg">
+                <Button
+                  href="/usluge"
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2"
+                >
                   Saznajte više o uslugama
                 </Button>
               </div>
             </div>
 
-            {/* Right: illustrative card / placeholder */}
+            {/* Right: placeholder */}
             <div className="order-1 lg:order-2">
               <PlaceholderImage
-                label="Tim / Prostor"
+                label="Naš tim / Prostor"
                 aspect="16:9"
                 className="rounded-3xl shadow-soft-lg min-h-[260px] md:min-h-[300px]"
               />
