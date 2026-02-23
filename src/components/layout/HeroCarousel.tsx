@@ -71,7 +71,7 @@ export function HeroCarousel({ slides, interval = 7000 }: HeroCarouselProps) {
 
   return (
     <section
-      className="relative min-h-screen w-full overflow-hidden"
+      className="relative min-h-[75dvh] sm:min-h-[85dvh] md:min-h-screen w-full overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-roledescription="carousel"
@@ -95,7 +95,7 @@ export function HeroCarousel({ slides, interval = 7000 }: HeroCarouselProps) {
                   src={s.image}
                   alt={s.alt}
                   fill
-                  className="object-cover"
+                  className="object-cover object-[center_top] md:object-center"
                   priority={i === 0}
                   sizes="100vw"
                   onError={() => handleImgError(i)}
@@ -113,8 +113,8 @@ export function HeroCarousel({ slides, interval = 7000 }: HeroCarouselProps) {
       </div>
 
       {/* ── Text content ── */}
-      <div className="relative z-20 flex min-h-screen w-full">
-        <div className="mx-auto w-full max-w-[1180px] px-5 sm:px-8 lg:px-10 flex flex-col justify-center pt-20 pb-32 sm:pb-28 md:pb-16 md:-mt-8">
+      <div className="relative z-20 flex min-h-[75dvh] sm:min-h-[85dvh] md:min-h-screen w-full">
+        <div className="mx-auto w-full max-w-[1180px] px-5 sm:px-8 lg:px-10 flex flex-col justify-center pt-20 pb-24 sm:pb-28 md:pb-16 md:-mt-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={slide.id}

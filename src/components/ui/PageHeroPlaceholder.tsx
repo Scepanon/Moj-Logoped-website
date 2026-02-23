@@ -25,7 +25,7 @@ export function PageHeroPlaceholder({
   meta,
 }: PageHeroPlaceholderProps) {
   return (
-    <div className="relative min-h-[320px] md:min-h-[400px] lg:min-h-[440px] overflow-hidden bg-gradient-to-br from-secondary-800 via-secondary-700 to-primary-900">
+    <div className="relative min-h-[260px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[440px] overflow-hidden bg-gradient-to-br from-secondary-800 via-secondary-700 to-primary-900">
       {/* Soft pattern overlay */}
       <div
         className="absolute inset-0 opacity-[0.08]"
@@ -37,7 +37,7 @@ export function PageHeroPlaceholder({
         aria-hidden
       />
       {/* Content */}
-      <div className="relative z-10 flex flex-col justify-end min-h-[320px] md:min-h-[400px] lg:min-h-[440px] py-14 md:py-20">
+      <div className="relative z-10 flex flex-col justify-end min-h-[260px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[440px] py-10 sm:py-14 md:py-20">
         <Container>
           {breadcrumbs && (
             <nav aria-label="Breadcrumb" className="mb-4">

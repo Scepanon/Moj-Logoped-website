@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -25,6 +25,19 @@ export function Header() {
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
+
+  const closeMenu = useCallback(() => setMobileOpen(false), []);
+
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent, href: string) => {
+      if (pathname === href) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      closeMenu();
+    },
+    [pathname, closeMenu],
+  );
 
   const pagesWithHeroImage = ["/o-nama", "/usluge", "/materijali", "/blog", "/kontakt"];
   const isPageWithHero =
@@ -136,47 +149,51 @@ export function Header() {
           </button>
         </div>
 
-        {/* Mobile nav */}
+        {/* Mobile nav — overlay + panel */}
         {mobileOpen && (
-          <nav
-            className={`lg:hidden pb-4 mt-1 transition-colors duration-300 ${
-              isOverHero
-                ? "border-t border-white/20"
-                : "border-t border-secondary-100"
-            }`}
-            aria-label="Mobilna navigacija"
-          >
-            <div className="flex flex-col gap-1 pt-3">
-              {navItems.map((item) => {
-                const isActive = pathname === item.href;
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                      isOverHero
-                        ? "text-white hover:bg-white/15"
-                        : isActive
-                          ? "text-primary-700 bg-primary-50"
-                          : "text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-              <Link
-                href="/kontakt"
-                className={`mt-2 mx-4 px-5 py-3 text-sm font-semibold rounded-xl transition-colors text-center ${
-                  isOverHero
-                    ? "bg-white/20 text-white hover:bg-white/30"
-                    : "bg-primary-500 text-white hover:bg-primary-600 shadow-soft-sm"
-                }`}
+          <>
+            <div
+              className="fixed inset-0 top-16 md:top-20 left-0 right-0 bottom-0 z-40 lg:hidden bg-black/25"
+              onClick={closeMenu}
+              aria-hidden="true"
+            />
+            <div
+              className="fixed top-[4.5rem] md:top-20 left-4 right-4 z-50 lg:hidden rounded-2xl bg-white/95 backdrop-blur-md border border-secondary-100 shadow-soft-lg overflow-hidden"
+            >
+              <nav
+                className="py-3"
+                aria-label="Mobilna navigacija"
               >
-                Zakažite termin
-              </Link>
+                <div className="flex flex-col divide-y divide-secondary-100">
+                  {navItems.map((item) => {
+                    const isActive = pathname === item.href;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={(e) => handleNavClick(e, item.href)}
+                        className={`px-5 py-3.5 text-sm font-medium transition-colors ${
+                          isActive
+                            ? "text-primary-700 bg-primary-50"
+                            : "text-secondary-700 hover:bg-secondary-50"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    );
+                  })}
+                  <div className="py-2" aria-hidden="true" />
+                  <Link
+                    href="/kontakt"
+                    onClick={(e) => handleNavClick(e, "/kontakt")}
+                    className="mx-4 mt-1 mb-3 px-5 py-3.5 text-sm font-semibold rounded-xl bg-primary-500 text-white hover:bg-primary-600 shadow-soft-sm text-center transition-colors"
+                  >
+                    Zakažite termin
+                  </Link>
+                </div>
+              </nav>
             </div>
-          </nav>
+          </>
         )}
       </Container>
     </header>
