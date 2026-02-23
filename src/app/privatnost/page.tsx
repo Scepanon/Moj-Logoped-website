@@ -197,9 +197,9 @@ export default function PrivatnostPage() {
             <div className="mt-3 p-4 bg-bg-cream rounded-xl text-sm text-secondary-600 space-y-1">
               <p><strong>Logopedski centar &quot;Moj Logoped&quot;</strong></p>
               {/* TODO: Replace with real address */}
-              <p>Ulica Slobode 12, 81000 Podgorica</p>
+              <p>Aerodromska, 81000 Podgorica</p>
               <p>Email: info@mojlogoped.me</p>
-              <p>Telefon: +382 67 123 456</p>
+              <p>Telefon: +382 67 322 996</p>
             </div>
           </div>
 

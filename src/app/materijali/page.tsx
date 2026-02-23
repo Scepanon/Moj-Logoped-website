@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
-import { PageHero } from "@/components/ui/PageHero";
+import { PageHeroPlaceholder } from "@/components/ui/PageHeroPlaceholder";
 import { BookingCTA } from "@/components/BookingCTA";
 import { resources } from "@/data/resources";
 
@@ -16,7 +16,7 @@ export default function MaterijaliPage() {
 
   return (
     <>
-      <PageHero
+      <PageHeroPlaceholder
         title="Materijali za roditelje"
         subtitle="Korisni vodiči, radni listovi i savjeti koje možete koristiti kod kuće."
         breadcrumbs={[{ label: "Materijali", href: "/materijali" }]}

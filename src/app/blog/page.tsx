@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
-import { PageHero } from "@/components/ui/PageHero";
+import { PageHeroPlaceholder } from "@/components/ui/PageHeroPlaceholder";
 import { BlogCard } from "@/components/BlogCard";
 import { BookingCTA } from "@/components/BookingCTA";
 import { blogPosts } from "@/data/blogPosts";
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <>
-      <PageHero
+      <PageHeroPlaceholder
         title="Blog"
         subtitle="Edukativni tekstovi za roditelje o govorno-jezičkom razvoju i logopedskoj terapiji."
         breadcrumbs={[{ label: "Blog", href: "/blog" }]}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
-import { PageHero } from "@/components/ui/PageHero";
+import { PageHeroPlaceholder } from "@/components/ui/PageHeroPlaceholder";
 import { ContactForm } from "@/components/ContactForm";
 import { BookingCTA } from "@/components/BookingCTA";
 
@@ -28,7 +28,7 @@ const contactDetails = {
 export default function KontaktPage() {
   return (
     <>
-      <PageHero
+      <PageHeroPlaceholder
         title="Kontakt"
         subtitle="Javite nam se – tu smo za sve vaše nedoumice i pitanja."
         breadcrumbs={[{ label: "Kontakt", href: "/kontakt" }]}

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
-import { PageHero } from "@/components/ui/PageHero";
+import { PageHeroPlaceholder } from "@/components/ui/PageHeroPlaceholder";
 import { BookingCTA } from "@/components/BookingCTA";
 import { Button } from "@/components/ui/Button";
 import { services } from "@/data/services";
@@ -41,7 +41,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
 
   return (
     <>
-      <PageHero
+      <PageHeroPlaceholder
         title={service.title}
         subtitle={service.shortDescription}
         breadcrumbs={breadcrumbs}

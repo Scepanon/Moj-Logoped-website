@@ -60,6 +60,27 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
+/* Inner page hero background – soft abstract shapes, Moj Logoped palette */
+.page-hero-bg {
+  position: relative;
+  background-color: #FDF6E9; /* bg-beige fallback */
+  background-image:
+    radial-gradient(ellipse 90% 70% at 85% 90%, rgba(255, 248, 231, 0.7) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 15% 30%, rgba(255, 239, 194, 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(232, 244, 244, 0.25) 0%, transparent 55%),
+    linear-gradient(180deg, #FDF6E9 0%, #FFFCF5 50%, #FDF6E9 100%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+@media (max-width: 768px) {
+  .page-hero-bg {
+    background-image:
+      radial-gradient(ellipse 100% 80% at 80% 85%, rgba(255, 248, 231, 0.5) 0%, transparent 60%),
+      radial-gradient(ellipse 90% 60% at 20% 25%, rgba(255, 239, 194, 0.35) 0%, transparent 55%),
+      linear-gradient(180deg, #FDF6E9 0%, #FFFCF5 100%);
+  }
+}
+
 .hero-vignette {
   background: radial-gradient(
     ellipse 120% 100% at 50% 50%,
@@ -87,6 +108,40 @@ h1, h2, h3, h4, h5, h6 {
     rgba(229, 162, 22, 0.2) 80%,
     transparent 100%
   );
+}
+
+/* Back-to-top button animations */
+@keyframes backToTopDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.back-to-top-drop {
+  animation: backToTopDrop 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.back-to-top-fade {
+  animation: backToTopFade 0.2s ease-out forwards;
+}
+@keyframes backToTopFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top-drop {
+    animation: backToTopFade 0.2s ease-out forwards;
+  }
+  .back-to-top-btn {
+    transition: opacity 0.15s ease-out !important;
+  }
 }
 
 /* Wavy top border for CTA section */

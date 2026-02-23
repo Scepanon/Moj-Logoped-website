@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { navItems } from "@/data/navigation";
 
-const SCROLL_THRESHOLD = 80;
+const SCROLL_THRESHOLD = 150;
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -26,7 +26,12 @@ export function Header() {
     setMobileOpen(false);
   }, [pathname]);
 
-  const isOverHero = isHome && !scrolled;
+  const pagesWithHeroImage = ["/o-nama", "/usluge", "/materijali", "/blog", "/kontakt"];
+  const isPageWithHero =
+    pagesWithHeroImage.includes(pathname) ||
+    pathname.startsWith("/blog/") ||
+    pathname.startsWith("/usluge/");
+  const isOverHero = (isHome || isPageWithHero) && !scrolled;
 
   return (
     <header
@@ -43,7 +48,7 @@ export function Header() {
             href="/"
             className={`flex items-center gap-3 shrink-0 transition-all duration-300 ${
               isOverHero
-                ? "rounded-xl bg-white/90 backdrop-blur-sm px-2 py-1.5"
+                ? "rounded-xl bg-white/95 backdrop-blur-sm px-2 py-1.5 shadow-soft-md border border-white/70"
                 : ""
             }`}
           >
@@ -63,7 +68,7 @@ export function Header() {
               </span>
               <span
                 className={`text-xs leading-none transition-colors duration-300 ${
-                  isOverHero ? "text-secondary-500" : "text-secondary-400"
+                  isOverHero ? "text-secondary-600" : "text-secondary-400"
                 }`}
               >
                 Logopedski centar

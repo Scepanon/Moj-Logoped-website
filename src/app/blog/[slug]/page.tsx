@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
+import { PageHeroPlaceholder } from "@/components/ui/PageHeroPlaceholder";
 import { BookingCTA } from "@/components/BookingCTA";
 import { blogPosts } from "@/data/blogPosts";
 
@@ -38,48 +39,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <>
-      {/* Header */}
-      <div className="bg-bg-beige py-12 md:py-16">
-        <Container>
-          <nav aria-label="Breadcrumb" className="mb-4">
-            <ol className="flex items-center gap-2 text-sm text-secondary-400">
-              <li>
-                <Link href="/" className="hover:text-primary-600 transition-colors">
-                  Početna
-                </Link>
-              </li>
-              <li className="flex items-center gap-2">
-                <span aria-hidden="true">/</span>
-                <Link href="/blog" className="hover:text-primary-600 transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li className="flex items-center gap-2">
-                <span aria-hidden="true">/</span>
-                <span className="text-secondary-700 font-medium truncate max-w-[200px]">
-                  {post.title}
-                </span>
-              </li>
-            </ol>
-          </nav>
-
-          <div className="flex items-center gap-3 mb-4">
-            <span className="text-xs font-medium px-2.5 py-1 bg-accent-teal-light text-accent-teal-dark rounded-full">
+      <PageHeroPlaceholder
+        title={post.title}
+        subtitle={post.excerpt}
+        breadcrumbs={[
+          { label: "Blog", href: "/blog" },
+          { label: post.title, href: `/blog/${post.slug}` },
+        ]}
+        meta={
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-medium px-2.5 py-1 bg-white/20 text-white rounded-full backdrop-blur-sm">
               {post.category}
             </span>
-            <time className="text-sm text-secondary-400" dateTime={post.date}>
+            <time className="text-sm text-white/80" dateTime={post.date}>
               {formattedDate}
             </time>
           </div>
-
-          <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-semibold text-secondary-900 leading-tight max-w-3xl">
-            {post.title}
-          </h1>
-          <p className="mt-4 text-lg text-secondary-500 max-w-2xl leading-relaxed">
-            {post.excerpt}
-          </p>
-        </Container>
-      </div>
+        }
+      />
 
       {/* Content */}
       <Section background="white" dividerTop>

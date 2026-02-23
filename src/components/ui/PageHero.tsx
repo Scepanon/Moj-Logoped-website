@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "./Container";
+import { PageHeroBackground } from "./PageHeroBackground";
 
 interface Breadcrumb {
   label: string;
@@ -14,7 +15,7 @@ interface PageHeroProps {
 
 export function PageHero({ title, subtitle, breadcrumbs }: PageHeroProps) {
   return (
-    <div className="bg-bg-beige border-b border-primary-100/60 py-14 md:py-20">
+    <PageHeroBackground className="py-14 md:py-20">
       <Container>
         {breadcrumbs && (
           <nav aria-label="Breadcrumb" className="mb-4">
@@ -48,6 +49,6 @@ export function PageHero({ title, subtitle, breadcrumbs }: PageHeroProps) {
           </p>
         )}
       </Container>
-    </div>
+    </PageHeroBackground>
   );
 }

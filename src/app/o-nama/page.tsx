@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
-import { PageHero } from "@/components/ui/PageHero";
+import { PageHeroPlaceholder } from "@/components/ui/PageHeroPlaceholder";
 import { TeamMemberCard } from "@/components/TeamMemberCard";
 import { BookingCTA } from "@/components/BookingCTA";
 import { team } from "@/data/team";
@@ -39,7 +39,7 @@ const faqItems = [
 export default function ONamaPage() {
   return (
     <>
-      <PageHero
+      <PageHeroPlaceholder
         title="O nama"
         subtitle="Upoznajte naš centar i tim koji stoji iza Moj Logoped."
         breadcrumbs={[{ label: "O nama", href: "/o-nama" }]}

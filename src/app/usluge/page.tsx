@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
-import { PageHero } from "@/components/ui/PageHero";
+import { PageHeroPlaceholder } from "@/components/ui/PageHeroPlaceholder";
 import { services } from "@/data/services";
 import { BookingCTA } from "@/components/BookingCTA";
 import { ServiceAccordion } from "@/components/ServiceAccordion";
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function UslugePage() {
   return (
     <>
-      <PageHero
+      <PageHeroPlaceholder
         title="Naše usluge"
         subtitle="Saznajte kako izgleda saradnja sa nama i kako možemo podržati vaše dijete."
         breadcrumbs={[{ label: "Usluge", href: "/usluge" }]}

@@ -2,12 +2,17 @@
 
 import { usePathname } from "next/navigation";
 
+const PAGES_WITH_HERO = ["/", "/o-nama", "/usluge", "/materijali", "/blog", "/kontakt"];
+
 export function MainWithPadding({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const hasHero =
+    PAGES_WITH_HERO.includes(pathname) ||
+    pathname.startsWith("/blog/") ||
+    pathname.startsWith("/usluge/");
 
   return (
-    <main className={`flex-1 ${isHome ? "" : "pt-16 md:pt-20"}`}>
+    <main className={`flex-1 ${hasHero ? "" : "pt-16 md:pt-20"}`}>
       {children}
     </main>
   );

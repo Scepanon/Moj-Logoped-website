@@ -15,6 +15,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "kada-potraziti-pomoc-logopeda",
     title: "Kada potražiti pomoć logopeda?",
+    coverImage: "/images/blog/clanak_5.png",
     excerpt:
       "Mnogi roditelji se pitaju da li razvoj govora njihovog djeteta napreduje kako treba. Saznajte koji su znakovi da je vrijeme za konsultaciju sa logopedom.",
     category: "Savjeti za roditelje",
@@ -58,6 +59,7 @@ Prva konsultacija u našem centru podrazumijeva razgovor sa roditeljima o istori
   {
     slug: "kako-izgleda-logopedska-procjena",
     title: "Kako izgleda logopedska procjena?",
+    coverImage: "/images/blog/clanak_1.png",
     excerpt:
       "Saznajte šta možete očekivati prilikom logopedske procjene vašeg djeteta i kako se pripremiti za prvi susret.",
     category: "O terapiji",
@@ -91,6 +93,7 @@ Dobićete pisani izvještaj sa rezultatima procjene i preporukama za dalji rad. 
   {
     slug: "igre-za-podsticanje-govora",
     title: "Igre za podsticanje govora kod kuće",
+    coverImage: "/images/blog/clanak_2.png",
     excerpt:
       "Jednostavne i zabavne aktivnosti koje možete raditi sa djetetom kod kuće kako biste podstakli razvoj govora.",
     category: "Savjeti za roditelje",
@@ -128,6 +131,7 @@ Neka komunikacija bude prirodna i zabavna. Ne ispravljajte dijete direktno – u
   {
     slug: "razvoj-govora-po-uzrastu",
     title: "Razvoj govora po uzrastu: šta očekivati?",
+    coverImage: "/images/blog/clanak_4.png",
     excerpt:
       "Pregled tipičnog govorno-jezičkog razvoja od rođenja do polaska u školu. Saznajte šta je očekivano za uzrast vašeg djeteta.",
     category: "Edukacija",
@@ -182,6 +186,7 @@ Ovi miljokazi su okvirni vodiči. Ako vaše dijete ne ispunjava sve navedeno za 
   {
     slug: "saradnja-roditelja-i-logopeda",
     title: "Zašto je saradnja roditelja i logopeda ključna?",
+    coverImage: "/images/blog/clanak_3.png",
     excerpt:
       "Uspješna logopedska terapija zahtijeva timski rad. Saznajte kako vaša uključenost čini razliku u napretku djeteta.",
     category: "O terapiji",
