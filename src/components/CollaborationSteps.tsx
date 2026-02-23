@@ -46,18 +46,18 @@ export function CollaborationSteps() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: reducedMotion ? 0 : 0.1,
+        staggerChildren: reducedMotion ? 0 : 0.06,
         delayChildren: reducedMotion ? 0 : 0.08,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: reducedMotion ? 0 : 20 },
+    hidden: { opacity: 0, y: reducedMotion ? 0 : 10 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: reducedMotion ? 0 : 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const },
+      transition: { duration: reducedMotion ? 0 : 0.22, ease: [0.25, 0.46, 0.45, 0.94] as const },
     },
   };
 

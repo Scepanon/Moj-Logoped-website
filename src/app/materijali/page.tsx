@@ -1,16 +1,20 @@
-import type { Metadata } from "next";
 import Image from "next/image";
+import { ChevronRight } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { PageHeroPlaceholder } from "@/components/ui/PageHeroPlaceholder";
 import { BookingCTA } from "@/components/BookingCTA";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { resources } from "@/data/resources";
+import { siteConfig } from "@/config/siteConfig";
+import { buildPageMetadata } from "@/config/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata(siteConfig, {
   title: "Materijali",
   description:
     "Besplatni materijali i vodiči za roditelje – podsticanje govorno-jezičkog razvoja kod kuće.",
-};
+  path: "/materijali",
+});
 
 export default function MaterijaliPage() {
   const categories = Array.from(new Set(resources.map((r) => r.category)));
@@ -43,8 +47,9 @@ export default function MaterijaliPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
               {resources
                 .filter((r) => r.category === category)
-                .map((resource) => (
-                  <Card key={resource.id} className="flex flex-col h-full overflow-hidden">
+                .map((resource, idx) => (
+                  <ScrollReveal key={resource.id} staggerIndex={idx}>
+                    <Card className="flex flex-col h-full overflow-hidden">
                     {resource.coverImage && (
                       <div className="relative aspect-[3/4] -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-2xl md:-mx-8 md:-mt-8 md:rounded-t-2xl">
                         <Image
@@ -67,10 +72,10 @@ export default function MaterijaliPage() {
                         <a
                           href={resource.href}
                           download
-                          className="text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors inline-flex items-center gap-1"
+                          className="group/link text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors inline-flex items-center gap-1 hover:underline underline-offset-2"
                         >
                           {resource.ctaLabel ?? "Preuzmi materijal"}
-                          <span aria-hidden="true">↓</span>
+                          <ChevronRight className="w-4 h-4 transition-transform duration-[220ms] ease-out group-hover/link:translate-x-0.5" aria-hidden />
                         </a>
                       ) : (
                         <span className="text-sm text-secondary-400 italic">
@@ -79,6 +84,7 @@ export default function MaterijaliPage() {
                       )}
                     </div>
                   </Card>
+                  </ScrollReveal>
                 ))}
             </div>
           </div>

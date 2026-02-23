@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
 import { PageHeroPlaceholder } from "@/components/ui/PageHeroPlaceholder";
 import { services } from "@/data/services";
 import { BookingCTA } from "@/components/BookingCTA";
 import { ServiceAccordion } from "@/components/ServiceAccordion";
+import { siteConfig } from "@/config/siteConfig";
+import { buildPageMetadata } from "@/config/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata(siteConfig, {
   title: "Usluge",
-  description:
-    "Logopedska terapija za djecu, procjena govorno-jezičkog razvoja, savjetovanje za roditelje i podrška ranom razvoju u centru Moj Logoped.",
-};
+  description: `Logopedska terapija za djecu, procjena govorno-jezičkog razvoja, savjetovanje za roditelje i podrška ranom razvoju u centru ${siteConfig.name}.`,
+  path: "/usluge",
+});
 
 export default function UslugePage() {
   return (

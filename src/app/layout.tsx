@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
 import { Inter, Quicksand } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MainWithPadding } from "@/components/layout/MainWithPadding";
 import { BackToTopButton } from "@/components/ui/BackToTopButton";
+import { siteConfig } from "@/config/siteConfig";
+import { buildSiteMetadata } from "@/config/metadata";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -19,28 +20,7 @@ const quicksand = Quicksand({
   weight: ["400", "500", "600", "700"],
 });
 
-export const metadata: Metadata = {
-  // TODO: Replace with final SEO metadata
-  title: {
-    default: "Moj Logoped – Logopedski centar Podgorica",
-    template: "%s | Moj Logoped",
-  },
-  description:
-    "Logopedski centar u Podgorici. Logopedska terapija za djecu, procjena govorno-jezičkog razvoja, savjetovanje za roditelje. Zakažite termin već danas.",
-  keywords: [
-    "logoped",
-    "logoped Podgorica",
-    "logopedski centar",
-    "govorna terapija",
-    "logopedska procjena",
-    "razvoj govora",
-  ],
-  openGraph: {
-    type: "website",
-    locale: "sr_Latn_ME",
-    siteName: "Moj Logoped",
-  },
-};
+export const metadata = buildSiteMetadata(siteConfig);
 
 export default function RootLayout({
   children,

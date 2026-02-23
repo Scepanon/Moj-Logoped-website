@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
 import { PageHero } from "@/components/ui/PageHero";
+import { siteConfig } from "@/config/siteConfig";
+import { buildPageMetadata } from "@/config/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata(siteConfig, {
   title: "Politika privatnosti",
-  description:
-    "Politika privatnosti logopedskog centra Moj Logoped – kako prikupljamo, koristimo i štitimo vaše lične podatke.",
-};
+  description: `Politika privatnosti logopedskog centra ${siteConfig.name} – kako prikupljamo, koristimo i štitimo vaše lične podatke.`,
+  path: "/privatnost",
+});
 
 export default function PrivatnostPage() {
   return (
@@ -26,7 +27,7 @@ export default function PrivatnostPage() {
               1. Ko smo mi?
             </h2>
             <p className="text-secondary-600 leading-relaxed">
-              Logopedski centar &quot;Moj Logoped&quot; (u daljem tekstu: Centar) sa
+              Logopedski centar &quot;{siteConfig.name}&quot; (u daljem tekstu: Centar) sa
               sjedištem u Podgorici, Crna Gora, je rukovalac ličnih podataka koji
               odgovara za podatke koje prikupljamo putem ove internet stranice i
               u okviru pružanja naših usluga.
@@ -153,10 +154,10 @@ export default function PrivatnostPage() {
               Za ostvarivanje bilo kog od navedenih prava, možete nas
               kontaktirati na{" "}
               <a
-                href="mailto:info@mojlogoped.me"
+                href={`mailto:${siteConfig.primaryContactEmail}`}
                 className="text-primary-600 hover:text-primary-700 underline"
               >
-                info@mojlogoped.me
+                {siteConfig.primaryContactEmail}
               </a>
               .
             </p>
@@ -195,11 +196,10 @@ export default function PrivatnostPage() {
               nas kontaktirati:
             </p>
             <div className="mt-3 p-4 bg-bg-cream rounded-xl text-sm text-secondary-600 space-y-1">
-              <p><strong>Logopedski centar &quot;Moj Logoped&quot;</strong></p>
-              {/* TODO: Replace with real address */}
-              <p>Aerodromska, 81000 Podgorica</p>
-              <p>Email: info@mojlogoped.me</p>
-              <p>Telefon: +382 67 322 996</p>
+              <p><strong>Logopedski centar &quot;{siteConfig.name}&quot;</strong></p>
+              <p>{siteConfig.addressFull}</p>
+              <p>Email: {siteConfig.primaryContactEmail}</p>
+              <p>Telefon: {siteConfig.phone}</p>
             </div>
           </div>
 

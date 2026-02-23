@@ -60,7 +60,7 @@ export function TestimonialsCarousel({
   };
 
   const t = testimonials[current];
-  const duration = reducedMotion ? 0 : 0.3;
+  const duration = reducedMotion ? 0 : 0.22;
 
   return (
     <section
@@ -71,7 +71,7 @@ export function TestimonialsCarousel({
     >
       <div className="mx-auto w-full max-w-[1180px] px-5 sm:px-8 lg:px-10">
         <div className="text-center mb-12 md:mb-16">
-          <span className="inline-block text-sm font-semibold text-accent-teal uppercase tracking-wider mb-3">
+          <span className="inline-block text-xs font-semibold text-secondary-400 uppercase tracking-widest mb-3">
             Iskustva roditelja
           </span>
           <h2 className="font-heading text-3xl md:text-4xl font-semibold text-secondary-900">
@@ -88,7 +88,7 @@ export function TestimonialsCarousel({
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
         >
-          <div className="bg-white rounded-3xl shadow-soft-lg p-8 md:p-12 lg:p-14 min-h-[320px] flex flex-col justify-center">
+          <div className="group/card bg-white rounded-3xl shadow-soft-lg p-8 md:p-12 lg:p-14 min-h-[320px] flex flex-col justify-center transition-all duration-[220ms] ease-out hover:shadow-soft-lg hover:shadow-[0_14px_40px_rgba(0,0,0,0.08)]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={t.id}
@@ -99,7 +99,7 @@ export function TestimonialsCarousel({
                 className="text-center"
               >
                 <p className="font-heading text-xl md:text-2xl lg:text-3xl text-secondary-700 leading-relaxed">
-                  <span className="text-primary-500 font-bold text-3xl md:text-4xl lg:text-5xl align-top leading-none">
+                  <span className="inline-block text-primary-500 font-bold text-3xl md:text-4xl lg:text-5xl align-top leading-none transition-transform duration-[220ms] ease-out group-hover/card:-translate-y-0.5 motion-reduce:translate-y-0">
                     „
                   </span>
                   {t.quote}

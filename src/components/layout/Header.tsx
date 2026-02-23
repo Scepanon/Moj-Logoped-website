@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { navItems } from "@/data/navigation";
+import { siteConfig } from "@/config/siteConfig";
 
 const SCROLL_THRESHOLD = 150;
 
@@ -65,23 +66,30 @@ export function Header() {
       />
       <Container className="relative z-10">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo — icon only, no text; direct on header with subtle shadow */}
+          {/* Logo — solo icon + text for stronger branding */}
           <Link
             href="/"
-            className={`flex items-center shrink-0 transition-all duration-300 ${
+            className={`flex items-center gap-3 shrink-0 transition-all duration-300 ${
               isOverHero
                 ? "drop-shadow-[0_2px_8px_rgba(0,0,0,0.2)]"
                 : "drop-shadow-[0_1px_3px_rgba(0,0,0,0.1)]"
             }`}
           >
             <Image
-              src="/images/logo_proper.png"
-              alt="Moj Logoped"
-              width={80}
-              height={80}
-              className="w-14 h-14 md:w-[5rem] md:h-[5rem] object-contain"
+              src="/images/logo_proper_solo.png"
+              alt=""
+              width={56}
+              height={56}
+              className="w-12 h-12 md:w-14 md:h-14 object-contain"
               priority
             />
+            <span
+              className={`font-heading text-lg md:text-xl font-semibold ${
+                isOverHero ? "text-white" : "text-secondary-900"
+              }`}
+            >
+              {siteConfig.name}
+            </span>
           </Link>
 
           {/* Desktop nav */}

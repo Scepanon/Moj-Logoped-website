@@ -1,17 +1,19 @@
-import type { Metadata } from "next";
-import Image from "next/image";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { PageHeroPlaceholder } from "@/components/ui/PageHeroPlaceholder";
 import { TeamMemberCard } from "@/components/TeamMemberCard";
+import { FounderSection } from "@/components/FounderSection";
 import { BookingCTA } from "@/components/BookingCTA";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { founder, team } from "@/data/team";
+import { siteConfig } from "@/config/siteConfig";
+import { buildPageMetadata } from "@/config/metadata";
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata(siteConfig, {
   title: "O nama",
-  description:
-    "Upoznajte naš tim logopedinja i saznajte više o pristupu rada logopedskog centra Moj Logoped u Podgorici.",
-};
+  description: `Upoznajte naš tim logopedinja i saznajte više o pristupu rada logopedskog centra ${siteConfig.name} u Podgorici.`,
+  path: "/o-nama",
+});
 
 // TODO: Replace placeholder FAQ items with real ones
 const faqItems = [
@@ -75,36 +77,10 @@ export default function ONamaPage() {
 
       {/* Founder section */}
       <Section background="cream" dividerTop>
-        <h2 className="font-heading text-xl font-semibold text-secondary-700 mb-6 text-center">
+        <h2 className="font-heading text-xl font-semibold text-secondary-700 mb-6 md:mb-8 text-center">
           Osnivačica centra
         </h2>
-        <div className="max-w-2xl mx-auto">
-          <Card hover={false} className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-center text-center sm:text-left">
-            <div className="relative w-32 h-32 rounded-full overflow-hidden bg-primary-100/50 shrink-0">
-              <Image
-                src={founder.photo}
-                alt={founder.name}
-                fill
-                sizes="128px"
-                className="object-cover object-center"
-              />
-            </div>
-            <div className="flex-1">
-              <h3 className="font-heading text-xl font-semibold text-secondary-900">
-                {founder.name}
-              </h3>
-              <p className="text-sm text-primary-600 font-medium mt-1">{founder.title}</p>
-              <p className="text-secondary-600 leading-relaxed mt-4 text-[1.05rem]">
-                {founder.bio}
-              </p>
-              {founder.approachQuote && (
-                <p className="text-primary-700/90 mt-4 leading-relaxed italic">
-                  &ldquo;{founder.approachQuote}&rdquo;
-                </p>
-              )}
-            </div>
-          </Card>
-        </div>
+        <FounderSection founder={founder} />
       </Section>
 
       {/* Team section */}
@@ -118,8 +94,10 @@ export default function ONamaPage() {
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
-          {team.map((member) => (
-            <TeamMemberCard key={member.id} member={member} />
+          {team.map((member, i) => (
+            <ScrollReveal key={member.id} staggerIndex={i}>
+              <TeamMemberCard member={member} />
+            </ScrollReveal>
           ))}
         </div>
       </Section>

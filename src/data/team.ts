@@ -14,7 +14,8 @@ export const founder: TeamMember = {
   name: "Dušica Šćepanović",
   title: "Osnivačica i logoped",
   bio: "Sa više od 13 godina iskustva u radu sa djecom, Dušica je osnovala Moj Logoped sa jasnom vizijom: da svako dijete dobije priliku da razvije svoje komunikacione vještine u toplom i podsticajnom okruženju. Specijalizirala se za individualni rad i ranu intervenciju, uvijek u bliskoj saradnji sa roditeljima. Njena posvećenost djeci i porodicama ogleda se u pristupu koji je stručan, a istovremeno topao i nenametljiv.",
-  approachQuote: "Vjerujem da svako dijete zaslužuje priliku da komunicira sa samopouzdanjem.",
+  approachQuote:
+    "Vjerujem da svako dijete napreduje kada se osjeća viđeno, shvaćeno i podržano.",
   photo: "/images/team/Dusica.jpg",
 };
 

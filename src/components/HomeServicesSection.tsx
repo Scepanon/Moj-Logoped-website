@@ -30,17 +30,40 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 /** Curated subset for home: 3 logopedske + 1 psihološka */
-const FEATURED_SLUGS = [
-  "logopedska-terapija",
-  "procjena-razvoja",
-  "teskoci-citanja-pisanja",
-  "psiholoska-eksploracija",
-];
+const FEATURED_CONFIG: Record<
+  string,
+  { microSubtitle: string; badge?: string; hoverReveal?: string }
+> = {
+  "logopedska-terapija": {
+    microSubtitle: "Govor kroz igru",
+    badge: "Najčešće birano",
+    hoverReveal: "Individualni plan za svako dijete.",
+  },
+  "procjena-razvoja": {
+    microSubtitle: "Jasan plan dalje",
+    hoverReveal: "Sažet izvještaj za roditelje.",
+  },
+  "teskoci-citanja-pisanja": {
+    microSubtitle: "Lakše čitanje i škola",
+    hoverReveal: "Saradnja sa školom i porodicom.",
+  },
+  "psiholoska-eksploracija": {
+    microSubtitle: "Dublje razumijevanje djeteta",
+    badge: "Novo",
+    hoverReveal: "Preporuke za dalji rad.",
+  },
+};
 
 function getFeaturedServices(): Service[] {
-  return FEATURED_SLUGS.map((slug) => services.find((s) => s.slug === slug)).filter(
-    (s): s is Service => s != null
-  );
+  const slugs = [
+    "logopedska-terapija",
+    "procjena-razvoja",
+    "teskoci-citanja-pisanja",
+    "psiholoska-eksploracija",
+  ];
+  return slugs
+    .map((slug) => services.find((s) => s.slug === slug))
+    .filter((s): s is Service => s != null);
 }
 
 export function HomeServicesSection() {
@@ -84,11 +107,11 @@ export function HomeServicesSection() {
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 12 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="text-center mb-14 md:mb-16"
         >
-          <span className="inline-block text-sm font-semibold text-primary-600 uppercase tracking-wider mb-3">
-            Naše usluge
+          <span className="inline-block text-xs font-semibold text-secondary-400 uppercase tracking-widest mb-3">
+            NAŠE USLUGE
           </span>
           <h2 className="font-heading text-3xl md:text-4xl lg:text-[2.5rem] font-semibold text-secondary-900">
             Kako možemo pomoći
@@ -146,6 +169,8 @@ interface ServiceCardProps {
 function ServiceCard({ service, variants, staggerIndex, reducedMotion }: ServiceCardProps) {
   const Icon = iconMap[service.icon] ?? MessageCircle;
   const benefit = service.teaser ?? service.shortDescription;
+  const config = FEATURED_CONFIG[service.slug] ?? {};
+  const isPsiholoska = service.group === "Psihološke usluge";
 
   const staggerClass =
     staggerIndex === 0
@@ -155,21 +180,39 @@ function ServiceCard({ service, variants, staggerIndex, reducedMotion }: Service
         : staggerIndex === 2
           ? "md:mt-10"
           : "md:mt-6";
+
+  const iconBgClass = isPsiholoska
+    ? "bg-accent-teal-light text-accent-teal-dark"
+    : "bg-primary-100 text-primary-600";
+
   return (
     <motion.div
       variants={variants}
-      transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`h-full ${staggerClass}`}
+      transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className={`h-full overflow-visible ${staggerClass}`}
     >
       <Link
         href={`/usluge/${service.slug}`}
-        className={`group block h-full rounded-2xl bg-white/95 backdrop-blur-sm p-6 md:p-7 shadow-soft-sm border border-secondary-100/80 transition-all duration-300 hover:shadow-soft-lg hover:border-primary-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-offset-2 ${
+        className={`group block h-full rounded-2xl bg-white/95 backdrop-blur-sm p-6 md:p-7 shadow-soft-sm border border-secondary-100/80 transition-all duration-[220ms] ease-out hover:shadow-soft-lg hover:border-primary-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-offset-2 relative overflow-visible ${
           !reducedMotion ? "hover:scale-[1.02]" : ""
         }`}
       >
+        {/* Badges — top-left corner, outside card edge to avoid overlap */}
+        {config.badge && (
+          <span
+            className={`absolute -top-1 -left-1 text-xs font-medium px-2.5 py-1 rounded-full shadow-soft-sm z-10 ${
+              config.badge === "Novo"
+                ? "bg-accent-teal-light text-accent-teal-dark"
+                : "bg-primary-100 text-primary-700"
+            }`}
+          >
+            {config.badge}
+          </span>
+        )}
+
         {/* Icon with circular backdrop */}
         <div
-          className={`mb-5 flex items-center justify-center w-14 h-14 rounded-2xl bg-primary-100 text-primary-600 shrink-0 transition-transform duration-300 group-hover:shadow-md ${
+          className={`mb-5 flex items-center justify-center w-14 h-14 rounded-2xl shrink-0 transition-all duration-[220ms] ease-out group-hover:shadow-md ${iconBgClass} ${
             !reducedMotion ? "group-hover:-translate-y-0.5" : ""
           }`}
         >
@@ -181,10 +224,24 @@ function ServiceCard({ service, variants, staggerIndex, reducedMotion }: Service
           {service.title}
         </h3>
 
+        {/* Micro-subtitle */}
+        {config.microSubtitle && (
+          <p className="mt-1 text-sm text-secondary-500 font-medium">
+            {config.microSubtitle}
+          </p>
+        )}
+
         {/* 1-line benefit */}
         <p className="mt-3 text-secondary-500 text-sm leading-relaxed line-clamp-2">
           {benefit}
         </p>
+
+        {/* Hover reveal line (desktop only) */}
+        {config.hoverReveal && (
+          <p className="mt-3 text-xs text-secondary-400 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-[220ms] ease-out hidden md:block">
+            {config.hoverReveal}
+          </p>
+        )}
 
         {/* Link */}
         <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary-600 group-hover:text-primary-700 transition-colors">

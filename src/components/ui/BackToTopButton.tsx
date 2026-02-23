@@ -34,6 +34,7 @@ export function BackToTopButton() {
       type="button"
       onClick={scrollToTop}
       aria-label="Nazad na vrh"
+      title="Na vrh stranice"
       tabIndex={visible ? 0 : -1}
       className={`back-to-top-btn fixed bottom-6 right-6 z-40 flex items-center justify-center w-12 h-12 sm:w-11 sm:h-11 rounded-full bg-primary-500 text-white shadow-soft-lg hover:bg-primary-600 transition-[opacity,transform] duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 active:scale-95 ${
         visible
