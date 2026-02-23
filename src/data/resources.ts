@@ -3,9 +3,12 @@ export interface Resource {
   title: string;
   description: string;
   category: string;
-  // TODO: Replace with actual download links or page links
   href: string;
   available: boolean;
+  /** Optional cover image for PDF/material cards */
+  coverImage?: string;
+  /** CTA label (default: "Preuzmi materijal") */
+  ctaLabel?: string;
 }
 
 // TODO: Replace with real resources and download links
@@ -54,6 +57,17 @@ export const resources: Resource[] = [
     category: "Radni materijali",
     href: "#",
     available: false,
+  },
+  {
+    id: "godisnja-doba",
+    title: "Slikovne kartice – godišnja doba",
+    description:
+      "Kartice za učenje godišnjih doba kroz igru. Djeca upoznaju proljeće, ljeto, jesen i zimu uz slikovite prikaze i jednostavne aktivnosti.",
+    category: "Radni materijali",
+    href: "/files/Godisnja_doba.pdf",
+    available: true,
+    coverImage: "/images/materials/Cover_godisnja_doba.png",
+    ctaLabel: "Preuzmite",
   },
   {
     id: "citanje-djeci",

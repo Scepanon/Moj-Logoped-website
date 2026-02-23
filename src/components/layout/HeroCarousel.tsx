@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import type { HeroSlide } from "@/data/heroSlides";
+
+const SWIPE_THRESHOLD = 50;
 
 interface HeroCarouselProps {
   slides: HeroSlide[];
@@ -42,6 +44,8 @@ export function HeroCarousel({ slides, interval = 7000 }: HeroCarouselProps) {
   const [imgErrors, setImgErrors] = useState<Set<number>>(() => new Set());
   const [mounted, setMounted] = useState(false);
   const reducedMotion = useReducedMotion();
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const resumeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const count = slides.length;
 
@@ -62,6 +66,43 @@ export function HeroCarousel({ slides, interval = 7000 }: HeroCarouselProps) {
     return () => clearInterval(id);
   }, [paused, next, interval, count]);
 
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    setPaused(true);
+    touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    if (resumeTimeout.current) {
+      clearTimeout(resumeTimeout.current);
+      resumeTimeout.current = null;
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      const start = touchStart.current;
+      touchStart.current = null;
+      if (!start || count <= 1) {
+        resumeTimeout.current = setTimeout(() => setPaused(false), 500);
+        return;
+      }
+      const end = e.changedTouches[0];
+      const dx = end.clientX - start.x;
+      const dy = end.clientY - start.y;
+      const absDx = Math.abs(dx);
+      const absDy = Math.abs(dy);
+      if (absDx > SWIPE_THRESHOLD && absDx > absDy) {
+        if (dx > 0) prev();
+        else next();
+      }
+      resumeTimeout.current = setTimeout(() => setPaused(false), 500);
+    },
+    [count, next, prev],
+  );
+
+  useEffect(() => {
+    return () => {
+      if (resumeTimeout.current) clearTimeout(resumeTimeout.current);
+    };
+  }, []);
+
   const handleImgError = (idx: number) => {
     setImgErrors((prev) => new Set(prev).add(idx));
   };
@@ -71,9 +112,11 @@ export function HeroCarousel({ slides, interval = 7000 }: HeroCarouselProps) {
 
   return (
     <section
-      className="relative min-h-[75dvh] sm:min-h-[85dvh] md:min-h-screen w-full overflow-hidden"
+      className="relative min-h-[75dvh] sm:min-h-[85dvh] md:min-h-screen w-full overflow-hidden touch-pan-y"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       aria-roledescription="carousel"
       aria-label="Istaknuto"
     >

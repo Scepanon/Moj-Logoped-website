@@ -2,44 +2,21 @@ import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
 import { HeroCarousel } from "@/components/layout/HeroCarousel";
-import { ServiceCard } from "@/components/ServiceCard";
+import { HomeServicesSection } from "@/components/HomeServicesSection";
 import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 import { CollaborationSteps } from "@/components/CollaborationSteps";
 import { BookingCTA } from "@/components/BookingCTA";
-import { services } from "@/data/services";
 import { heroSlides } from "@/data/heroSlides";
 import { testimonials } from "@/data/testimonials";
 
 export default function HomePage() {
-  const featuredServices = services.slice(0, 4);
-
   return (
     <>
       {/* ── Hero Carousel ── */}
       <HeroCarousel slides={heroSlides} />
 
       {/* ── Services ── */}
-      <Section background="white" id="usluge" dividerTop>
-        <div className="text-center mb-14">
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold text-secondary-900">
-            Kako možemo pomoći
-          </h2>
-          <p className="mt-4 text-secondary-500 max-w-2xl mx-auto leading-relaxed">
-            Nudimo širok spektar logopedskih usluga prilagođenih potrebama
-            svakog djeteta i porodice.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-7">
-          {featuredServices.map((service) => (
-            <ServiceCard key={service.id} service={service} variant="flip" />
-          ))}
-        </div>
-        <div className="text-center mt-16 md:mt-20">
-          <Button href="/usluge" variant="outline">
-            Pogledajte sve usluge
-          </Button>
-        </div>
-      </Section>
+      <HomeServicesSection />
 
       {/* ── About teaser — distinct tinted block ── */}
       <Section background="cream" dividerTop>

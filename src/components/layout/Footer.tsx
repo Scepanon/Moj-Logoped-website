@@ -28,11 +28,11 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-4">
               <Image
-                src="/images/logo.png"
-                alt="Moj Logoped logo"
-                width={40}
-                height={40}
-                className="w-10 h-10 brightness-110"
+                src="/images/logo_proper_solo.png"
+                alt="Moj Logoped"
+                width={44}
+                height={44}
+                className="w-11 h-11 md:w-12 md:h-12 brightness-110 shrink-0"
               />
               <div>
                 <span className="font-heading text-lg font-semibold text-white block">

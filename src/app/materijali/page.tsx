@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Section } from "@/components/ui/Section";
 import { Card } from "@/components/ui/Card";
 import { PageHeroPlaceholder } from "@/components/ui/PageHeroPlaceholder";
@@ -43,7 +44,18 @@ export default function MaterijaliPage() {
               {resources
                 .filter((r) => r.category === category)
                 .map((resource) => (
-                  <Card key={resource.id} className="flex flex-col h-full">
+                  <Card key={resource.id} className="flex flex-col h-full overflow-hidden">
+                    {resource.coverImage && (
+                      <div className="relative aspect-[3/4] -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-2xl md:-mx-8 md:-mt-8 md:rounded-t-2xl">
+                        <Image
+                          src={resource.coverImage}
+                          alt=""
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 640px) 100vw, 33vw"
+                        />
+                      </div>
+                    )}
                     <h3 className="font-heading font-semibold text-secondary-900 mb-2">
                       {resource.title}
                     </h3>
@@ -54,9 +66,10 @@ export default function MaterijaliPage() {
                       {resource.available ? (
                         <a
                           href={resource.href}
+                          download
                           className="text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors inline-flex items-center gap-1"
                         >
-                          Preuzmi materijal
+                          {resource.ctaLabel ?? "Preuzmi materijal"}
                           <span aria-hidden="true">↓</span>
                         </a>
                       ) : (

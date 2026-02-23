@@ -8,15 +8,17 @@ export interface TeamMember {
   photo: string;
 }
 
+/** Founder — shown in dedicated section on O nama, not in team grid */
+export const founder: TeamMember = {
+  id: "dusica",
+  name: "Dušica Šćepanović",
+  title: "Osnivačica i logoped",
+  bio: "Sa više od 13 godina iskustva u radu sa djecom, Dušica je osnovala Moj Logoped sa jasnom vizijom: da svako dijete dobije priliku da razvije svoje komunikacione vještine u toplom i podsticajnom okruženju. Specijalizirala se za individualni rad i ranu intervenciju, uvijek u bliskoj saradnji sa roditeljima. Njena posvećenost djeci i porodicama ogleda se u pristupu koji je stručan, a istovremeno topao i nenametljiv.",
+  approachQuote: "Vjerujem da svako dijete zaslužuje priliku da komunicira sa samopouzdanjem.",
+  photo: "/images/team/Dusica.jpg",
+};
+
 export const team: TeamMember[] = [
-  {
-    id: "dusica",
-    name: "Dušica Šćepanović",
-    title: "Master dipl.logoped i dipl.pedagog, osnivačica centra",
-    bio: "Sa višegodišnjim iskustvom u radu sa djecom, Dušica je osnovala centar sa vizijom da svakom djetetu pruži podršku u razvoju komunikacije. Specijalizirala se za individualni rad i ranu intervenciju, uvijek u saradnji sa roditeljima.",
-    approachQuote: "Vjerujem da svako dijete zaslužuje priliku da komunicira sa samopouzdanjem.",
-    photo: "/images/team/Dusica.jpg",
-  },
   {
     id: "ana",
     name: "Ana Jovanović",
@@ -37,5 +39,12 @@ export const team: TeamMember[] = [
     title: "Logopedkinja",
     bio: "Jelena se fokusira na savjetovanje roditelja i podršku porodicama u procesu logopedske terapije.",
     photo: "/images/team/placeholder-4.jpg",
+  },
+  {
+    id: "psiholog",
+    name: "Psiholog – Ime i Prezime",
+    title: "Psiholog",
+    bio: "Fokus rada je na podršci djeci i roditeljima u procjeni emocionalnog, kognitivnog i ponašajnog funkcionisanja. U saradnji sa logopedskim timom pruža topao, stručan i nenametljiv pristup koji pomaže porodicama da bolje razumiju potrebe djeteta i planiraju dalji rad.",
+    photo: "/images/team/placeholder-5.jpg",
   },
 ];

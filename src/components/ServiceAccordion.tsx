@@ -8,6 +8,7 @@ import {
   Baby,
   BookOpen,
   Mic,
+  Brain,
   ChevronDown,
   ChevronRight,
   type LucideIcon,
@@ -23,6 +24,7 @@ const iconMap: Record<string, LucideIcon> = {
   baby: Baby,
   "book-open": BookOpen,
   mic: Mic,
+  brain: Brain,
 };
 
 interface ServiceAccordionProps {
@@ -30,20 +32,44 @@ interface ServiceAccordionProps {
 }
 
 export function ServiceAccordion({ services }: ServiceAccordionProps) {
-  const [expandedId, setExpandedId] = useState<string | null>(() => services[0]?.id ?? null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
   const reducedMotion = useReducedMotion();
 
   const toggle = (id: string) => {
     setExpandedId((prev) => (prev === id ? null : id));
   };
 
-  return (
-    <div className="space-y-4 md:space-y-5" role="list">
-      {services.map((service) => {
-        const Icon = iconMap[service.icon] ?? MessageCircle;
-        const isExpanded = expandedId === service.id;
+  const GROUP_ORDER = ["Logopedske usluge", "Psihološke usluge"];
+  const groups = GROUP_ORDER.filter((g) => services.some((s) => s.group === g));
+  const hasGroups = groups.length > 0;
+  const getServicesInGroup = (group: string) => services.filter((s) => s.group === group);
 
-        return (
+  return (
+    <div className="space-y-10" role="list">
+      {hasGroups ? (
+        groups.map((group) => (
+          <div key={group}>
+            <h3 className="font-heading text-lg font-semibold text-secondary-700 mb-4">
+              {group}
+            </h3>
+            <div className="space-y-4 md:space-y-5">
+              {getServicesInGroup(group).map((service) => renderService(service))}
+            </div>
+          </div>
+        ))
+      ) : (
+        <div className="space-y-4 md:space-y-5">
+          {services.map((service) => renderService(service))}
+        </div>
+      )}
+    </div>
+  );
+
+  function renderService(service: Service) {
+    const Icon = iconMap[service.icon] ?? MessageCircle;
+    const isExpanded = expandedId === service.id;
+
+    return (
           <div
             key={service.id}
             className="rounded-2xl bg-white shadow-soft-sm border border-secondary-100 overflow-hidden transition-shadow duration-200 hover:shadow-soft-md focus-within:ring-2 focus-within:ring-primary-300 focus-within:ring-offset-2"
@@ -125,7 +151,5 @@ export function ServiceAccordion({ services }: ServiceAccordionProps) {
             </div>
           </div>
         );
-      })}
-    </div>
-  );
+  }
 }

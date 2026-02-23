@@ -8,6 +8,7 @@ import {
   Baby,
   BookOpen,
   Mic,
+  Brain,
   ChevronDown,
   ArrowLeft,
   type LucideIcon,
@@ -23,6 +24,7 @@ const iconMap: Record<string, LucideIcon> = {
   baby: Baby,
   "book-open": BookOpen,
   mic: Mic,
+  brain: Brain,
 };
 
 interface ServiceCardProps {

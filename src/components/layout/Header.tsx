@@ -48,45 +48,40 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
+      className={`fixed top-0 left-0 right-0 z-50 ${
         isOverHero
-          ? "bg-transparent shadow-none"
-          : "bg-white/95 backdrop-blur-md shadow-soft-sm"
+          ? "shadow-none"
+          : ""
       }`}
     >
-      <Container>
+      {/* Solid background layer — drops in when scrolled */}
+      <div
+        className={`absolute inset-0 bg-white/95 backdrop-blur-md shadow-soft-sm transition-opacity duration-200 ease-out ${
+          isOverHero
+            ? "opacity-0 pointer-events-none"
+            : "opacity-100 header-drop-in"
+        }`}
+        aria-hidden="true"
+      />
+      <Container className="relative z-10">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo — always visible; only wrapper styling changes */}
+          {/* Logo — icon only, no text; direct on header with subtle shadow */}
           <Link
             href="/"
-            className={`flex items-center gap-3 shrink-0 transition-all duration-300 ${
+            className={`flex items-center shrink-0 transition-all duration-300 ${
               isOverHero
-                ? "rounded-xl bg-white/95 backdrop-blur-sm px-2 py-1.5 shadow-soft-md border border-white/70"
-                : ""
+                ? "drop-shadow-[0_2px_8px_rgba(0,0,0,0.2)]"
+                : "drop-shadow-[0_1px_3px_rgba(0,0,0,0.1)]"
             }`}
           >
-            <span className="relative block w-10 h-10 md:w-12 md:h-12 shrink-0">
-              <Image
-                src="/images/logo.png"
-                alt="Moj Logoped logo"
-                width={48}
-                height={48}
-                className="w-full h-full object-contain"
-                priority
-              />
-            </span>
-            <div className="hidden sm:block">
-              <span className="font-heading text-lg font-semibold leading-tight block text-secondary-900">
-                Moj Logoped
-              </span>
-              <span
-                className={`text-xs leading-none transition-colors duration-300 ${
-                  isOverHero ? "text-secondary-600" : "text-secondary-400"
-                }`}
-              >
-                Logopedski centar
-              </span>
-            </div>
+            <Image
+              src="/images/logo_proper.png"
+              alt="Moj Logoped"
+              width={80}
+              height={80}
+              className="w-14 h-14 md:w-[5rem] md:h-[5rem] object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}
